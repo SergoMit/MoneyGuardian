@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>icons/change_budget.svg</file>
+    <file>icons/add.svg</file>
+    <file>icons/delete.svg</file>
+    <file>icons/edit.svg</file>
+  </qresource>
+</RCC>

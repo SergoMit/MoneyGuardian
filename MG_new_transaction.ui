@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>432</width>
+    <height>280</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Создать</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(20, 70, 140, 255), stop:0.427447 rgba(48, 140, 105, 255), stop:1 rgba(48, 138,  126, 255));
+font-family: BigCaslon;</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255, 255, 255, 30);
+border: 1px solid rgba(255 ,255 ,255, 40);
+border-radius: 7px;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="new_trans_label">
+        <property name="styleSheet">
+         <string notr="true">color: white;
+font-weight: bold;
+font-size: 20pt;
+background-color: none;
+border: none;</string>
+        </property>
+        <property name="text">
+         <string>Новая транзакция</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="cb_category">
+        <property name="acceptDrops">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+QComboBox {
+font-size: 16pt;
+color: white;
+border-radius: 0px;
+height: 20px;
+}
+
+QComboBox: item {
+color: black;
+}</string>
+        </property>
+        <property name="placeholderText">
+         <string>Выберите категорию</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Продукты</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Техника</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Транспорт</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Бытовая химия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Услуги</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Контент</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Стройматериалы</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Электроника</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Инструменты</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Топливо</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Развлечения</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Отдых</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ЖКХ</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Кафе/рестораны</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Одежда и обувь</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Переводы</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Цифровые товары</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сервисы</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Благотворительность</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDateEdit" name="data">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size: 16 pt;
+color: white; 
+padding-left: 10px;
+border-radius: 0px;
+height: 20px;</string>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+        <property name="date">
+         <date>
+          <year>2024</year>
+          <month>1</month>
+          <day>1</day>
+         </date>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="amount">
+        <property name="styleSheet">
+         <string notr="true">font-size: 16pt;
+color: white;
+padding-left: 10px;
+height: 30px;
+</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+        <property name="placeholderText">
+         <string>Сумма...</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="descript">
+        <property name="styleSheet">
+         <string notr="true">font-size: 16pt;
+color: white;
+padding-left: 10px;
+height: 30px;</string>
+        </property>
+        <property name="placeholderText">
+         <string>Описание...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="save_button">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+background-color: rgba(255,255, 255, 0);
+border: 1px solid rgba(0, 0, 0, 100);
+border-radius: 7px;
+height: 40px;
+}
+QPushButton:hover {
+background-color: rgba(255, 255, 255, 40);
+}
+
+QPushButton:pressed {
+background-color: rgba(255, 255, 255, 90);
+}</string>
+        </property>
+        <property name="text">
+         <string>Сохранить</string>
+        </property>
+        <property name="icon">
+         <iconset resource="res-new-window-rc.qrc">
+          <normaloff>:/newPrefix/icons/add.svg</normaloff>:/newPrefix/icons/add.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="res-new-window-rc.qrc"/>
+ </resources>
+ <connections/>
+</ui>
