@@ -6,15 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>412</width>
-    <height>288</height>
+    <width>431</width>
+    <height>164</height>
    </rect>
   </property>
-  <property name="acceptDrops">
-   <bool>true</bool>
-  </property>
   <property name="windowTitle">
-   <string>Бюджет</string>
+   <string>Удалить</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(20, 70, 140, 255), stop:0.427447 rgba(48, 140, 105, 255), stop:1 rgba(48, 138,  126, 255));
@@ -36,7 +33,7 @@ border-radius: 7px;</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="new_budget_label">
+       <widget class="QLabel" name="delete_trans_label">
         <property name="styleSheet">
          <string notr="true">color: white;
 font-weight: bold;
@@ -45,7 +42,7 @@ background-color: none;
 border: none;</string>
         </property>
         <property name="text">
-         <string>Задание бюджета</string>
+         <string>Удалить транзакцию</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -53,48 +50,12 @@ border: none;</string>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="bud_per_day">
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите максимально допустимую сумму затрат за день&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size: 16pt;
-color: white;
-padding-left: 10px;
-height: 30px;</string>
-        </property>
-        <property name="placeholderText">
-         <string>На день...</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="bud_per_week">
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите максимально допустимую сумму затрат за неделю&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font-size: 16pt;
-color: white;
-padding-left: 10px;
-height: 30px;
-</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-        <property name="placeholderText">
-         <string>На неделю...</string>
-        </property>
-        <property name="clearButtonEnabled">
+       <widget class="QLineEdit" name="delete_id">
+        <property name="acceptDrops">
          <bool>false</bool>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="bud_per_month">
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите максимально допустимую сумму затрат за месяц&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите  id транзакции, имеющейся в таблице&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">font-size: 16pt;
@@ -103,12 +64,12 @@ padding-left: 10px;
 height: 30px;</string>
         </property>
         <property name="placeholderText">
-         <string>На месяц...</string>
+         <string> id...</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="save_budget_button">
+       <widget class="QPushButton" name="delete_button">
         <property name="styleSheet">
          <string notr="true">QPushButton {
 background-color: rgba(255,255, 255, 0);
@@ -125,11 +86,11 @@ background-color: rgba(255, 255, 255, 90);
 }</string>
         </property>
         <property name="text">
-         <string>Сохранить</string>
+         <string>Удалить</string>
         </property>
         <property name="icon">
          <iconset resource="res-new-window-rc.qrc">
-          <normaloff>:/newPrefix/icons/change_budget.svg</normaloff>:/newPrefix/icons/change_budget.svg</iconset>
+          <normaloff>:/newPrefix/icons/delete.svg</normaloff>:/newPrefix/icons/delete.svg</iconset>
         </property>
         <property name="iconSize">
          <size>

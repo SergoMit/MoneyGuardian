@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MoneyGuardianUI.ui'
+## Form generated from reading UI file 'MoneyGuardianUI_main.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.2
 ##
@@ -15,16 +15,18 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QHeaderView,
-    QLabel, QMainWindow, QPushButton, QSizePolicy,
-    QTableView, QVBoxLayout, QWidget)
-import res_icons
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
+    QHeaderView, QLabel, QMainWindow, QPushButton,
+    QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
+from bookkeeper.view import res_icons
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(793, 589)
+        MainWindow.setAcceptDrops(False)
         MainWindow.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(20, 70, 140, 255), stop:0.427447 rgba(48, 140, 105, 255), stop:1 rgba(48, 138,  126, 255));\n"
 "font-family: BigCaslon;")
         self.centralwidget = QWidget(MainWindow)
@@ -206,7 +208,16 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.new_button = QPushButton(self.centralwidget)
+        self.frame = QFrame(self.centralwidget)
+        self.frame.setObjectName(u"frame")
+        self.frame.setStyleSheet(u"background-color:none;\n"
+"border:none;\n"
+"border-radius: 0px;")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.gridLayout = QGridLayout(self.frame)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.new_button = QPushButton(self.frame)
         self.new_button.setObjectName(u"new_button")
         self.new_button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgba(255,255, 255, 0);\n"
@@ -225,30 +236,9 @@ class Ui_MainWindow(object):
         self.new_button.setIcon(icon)
         self.new_button.setIconSize(QSize(24, 24))
 
-        self.horizontalLayout_5.addWidget(self.new_button)
+        self.gridLayout.addWidget(self.new_button, 0, 0, 1, 1)
 
-        self.del_button = QPushButton(self.centralwidget)
-        self.del_button.setObjectName(u"del_button")
-        self.del_button.setStyleSheet(u"QPushButton {\n"
-"background-color: rgba(255,255, 255, 0);\n"
-"border: 1px solid rgba(0, 0, 0, 100);\n"
-"border-radius: 7px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"background-color: rgba(255, 255, 255, 40);\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"background-color: rgba(255, 255, 255, 90);\n"
-"}")
-        icon1 = QIcon()
-        icon1.addFile(u":/icon/icons/delete.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.del_button.setIcon(icon1)
-        self.del_button.setIconSize(QSize(24, 24))
-
-        self.horizontalLayout_5.addWidget(self.del_button)
-
-        self.change_button = QPushButton(self.centralwidget)
+        self.change_button = QPushButton(self.frame)
         self.change_button.setObjectName(u"change_button")
         self.change_button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgba(255,255, 255, 0);\n"
@@ -262,14 +252,35 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "background-color: rgba(255, 255, 255, 90);\n"
 "}")
-        icon2 = QIcon()
-        icon2.addFile(u":/icon/icons/edit.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.change_button.setIcon(icon2)
+        icon1 = QIcon()
+        icon1.addFile(u":/icon/icons/edit.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.change_button.setIcon(icon1)
         self.change_button.setIconSize(QSize(24, 24))
 
-        self.horizontalLayout_5.addWidget(self.change_button)
+        self.gridLayout.addWidget(self.change_button, 0, 1, 1, 1)
 
-        self.budget_button = QPushButton(self.centralwidget)
+        self.del_button = QPushButton(self.frame)
+        self.del_button.setObjectName(u"del_button")
+        self.del_button.setStyleSheet(u"QPushButton {\n"
+"background-color: rgba(255,255, 255, 0);\n"
+"border: 1px solid rgba(0, 0, 0, 100);\n"
+"border-radius: 7px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"background-color: rgba(255, 255, 255, 40);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"background-color: rgba(255, 255, 255, 90);\n"
+"}")
+        icon2 = QIcon()
+        icon2.addFile(u":/icon/icons/delete.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.del_button.setIcon(icon2)
+        self.del_button.setIconSize(QSize(24, 24))
+
+        self.gridLayout.addWidget(self.del_button, 0, 2, 1, 1)
+
+        self.budget_button = QPushButton(self.frame)
         self.budget_button.setObjectName(u"budget_button")
         self.budget_button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgba(255,255, 255, 0);\n"
@@ -288,44 +299,18 @@ class Ui_MainWindow(object):
         self.budget_button.setIcon(icon3)
         self.budget_button.setIconSize(QSize(24, 24))
 
-        self.horizontalLayout_5.addWidget(self.budget_button)
+        self.gridLayout.addWidget(self.budget_button, 0, 3, 1, 1)
+
+
+        self.horizontalLayout_5.addWidget(self.frame)
 
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_5)
 
-        self.tableView = QTableView(self.centralwidget)
-        self.tableView.setObjectName(u"tableView")
-        self.tableView.setStyleSheet(u"QTableView{\n"
-"background-color: rgba(255, 255, 255, 30);\n"
-"border: 1px solid rgba(255, 255, 255, 40);\n"
-"border-bottom-right-radius: 7px;\n"
-"border-bottom-left-radius: 7px;\n"
-"}\n"
-"\n"
-"QTableView: section {\n"
-"background-color: rgba(53, 53, 53);\n"
-"color: white;\n"
-"border: none;\n"
-"height: 50px;\n"
-"font-size: 14pt;\n"
-"}\n"
-"\n"
-"QTableView: item {\n"
-"border-style: none;\n"
-"border-bottom: rgba(255, 255, 255, 50);\n"
-"}\n"
-"\n"
-"QTableView: item:selected {\n"
-"border: none;\n"
-"color: rgba(255, 255, 255);\n"
-"background-color: rgba(255, 255, 255, 50);\n"
-"}")
-        self.tableView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.tableView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.tableView.setShowGrid(False)
-        self.tableView.horizontalHeader().setDefaultSectionSize(135)
+        self.table_viewer = QTableWidget(self.centralwidget)
+        self.table_viewer.setObjectName(u"table_viewer")
 
-        self.verticalLayout_8.addWidget(self.tableView)
+        self.verticalLayout_8.addWidget(self.table_viewer)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -352,8 +337,8 @@ class Ui_MainWindow(object):
         self.week_residual.setText(QCoreApplication.translate("MainWindow", u"$0", None))
         self.month_residual.setText(QCoreApplication.translate("MainWindow", u"$0", None))
         self.new_button.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c", None))
-        self.del_button.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         self.change_button.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
+        self.del_button.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         self.budget_button.setText(QCoreApplication.translate("MainWindow", u"\u0411\u044e\u0434\u0436\u0435\u0442", None))
     # retranslateUi
 

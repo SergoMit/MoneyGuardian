@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>424</width>
-    <height>270</height>
+    <width>422</width>
+    <height>312</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Создать</string>
+   <string>Изменить</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(20, 70, 140, 255), stop:0.427447 rgba(48, 140, 105, 255), stop:1 rgba(48, 138,  126, 255));
 font-family: BigCaslon;</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
       <string notr="true">background-color: rgba(255, 255, 255, 30);
@@ -33,7 +33,7 @@ border-radius: 7px;</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="new_trans_label">
+       <widget class="QLabel" name="edit_trans_label">
         <property name="styleSheet">
          <string notr="true">color: white;
 font-weight: bold;
@@ -42,7 +42,7 @@ background-color: none;
 border: none;</string>
         </property>
         <property name="text">
-         <string>Новая транзакция</string>
+         <string>Изменение транзакции</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -50,7 +50,26 @@ border: none;</string>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="cb_category">
+       <widget class="QLineEdit" name="edit_id_transaction">
+        <property name="acceptDrops">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите id любой транзакции, имеющейся в таблице&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size: 16pt;
+color: white;
+padding-left: 10px;
+height: 30px;</string>
+        </property>
+        <property name="placeholderText">
+         <string>id...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="edit_cb_category">
         <property name="acceptDrops">
          <bool>false</bool>
         </property>
@@ -168,7 +187,7 @@ color: black;
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="data">
+       <widget class="QDateEdit" name="edit_date">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -195,7 +214,7 @@ height: 20px;</string>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="amount">
+       <widget class="QLineEdit" name="edit_amount">
         <property name="acceptDrops">
          <bool>false</bool>
         </property>
@@ -221,7 +240,7 @@ height: 30px;
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="descript">
+       <widget class="QLineEdit" name="edit_descript">
         <property name="acceptDrops">
          <bool>false</bool>
         </property>
@@ -240,7 +259,7 @@ height: 30px;</string>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="save_button">
+       <widget class="QPushButton" name="edit_button">
         <property name="styleSheet">
          <string notr="true">QPushButton {
 background-color: rgba(255,255, 255, 0);
@@ -257,11 +276,11 @@ background-color: rgba(255, 255, 255, 90);
 }</string>
         </property>
         <property name="text">
-         <string>Сохранить</string>
+         <string>Изменить</string>
         </property>
         <property name="icon">
          <iconset resource="res-new-window-rc.qrc">
-          <normaloff>:/newPrefix/icons/add.svg</normaloff>:/newPrefix/icons/add.svg</iconset>
+          <normaloff>:/newPrefix/icons/edit.svg</normaloff>:/newPrefix/icons/edit.svg</iconset>
         </property>
         <property name="iconSize">
          <size>

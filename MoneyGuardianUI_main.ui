@@ -10,6 +10,9 @@
     <height>589</height>
    </rect>
   </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string>Money Guardian</string>
   </property>
@@ -266,9 +269,23 @@ font-size: 18pt;
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
-       <widget class="QPushButton" name="new_button">
+       <widget class="QFrame" name="frame">
         <property name="styleSheet">
-         <string notr="true">QPushButton {
+         <string notr="true">background-color:none;
+border:none;
+border-radius: 0px;</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="new_button">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
 background-color: rgba(255,255, 255, 0);
 border: 1px solid rgba(0, 0, 0, 100);
 border-radius: 7px;
@@ -280,26 +297,26 @@ background-color: rgba(255, 255, 255, 40);
 QPushButton:pressed {
 background-color: rgba(255, 255, 255, 90);
 }</string>
-        </property>
-        <property name="text">
-         <string>Создать</string>
-        </property>
-        <property name="icon">
-         <iconset resource="res-icons.qrc">
-          <normaloff>:/icon/icons/add.svg</normaloff>:/icon/icons/add.svg</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>24</width>
-          <height>24</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="del_button">
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+           </property>
+           <property name="text">
+            <string>Создать</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../ORM_bookkeeper/res-icons.qrc">
+             <normaloff>:/icon/icons/add.svg</normaloff>:/icon/icons/add.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="change_button">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
 background-color: rgba(255,255, 255, 0);
 border: 1px solid rgba(0, 0, 0, 100);
 border-radius: 7px;
@@ -311,26 +328,26 @@ background-color: rgba(255, 255, 255, 40);
 QPushButton:pressed {
 background-color: rgba(255, 255, 255, 90);
 }</string>
-        </property>
-        <property name="text">
-         <string>Удалить</string>
-        </property>
-        <property name="icon">
-         <iconset resource="res-icons.qrc">
-          <normaloff>:/icon/icons/delete.svg</normaloff>:/icon/icons/delete.svg</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>24</width>
-          <height>24</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="change_button">
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+           </property>
+           <property name="text">
+            <string>Изменить</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../ORM_bookkeeper/res-icons.qrc">
+             <normaloff>:/icon/icons/edit.svg</normaloff>:/icon/icons/edit.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QPushButton" name="del_button">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
 background-color: rgba(255,255, 255, 0);
 border: 1px solid rgba(0, 0, 0, 100);
 border-radius: 7px;
@@ -342,26 +359,26 @@ background-color: rgba(255, 255, 255, 40);
 QPushButton:pressed {
 background-color: rgba(255, 255, 255, 90);
 }</string>
-        </property>
-        <property name="text">
-         <string>Изменить</string>
-        </property>
-        <property name="icon">
-         <iconset resource="res-icons.qrc">
-          <normaloff>:/icon/icons/edit.svg</normaloff>:/icon/icons/edit.svg</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>24</width>
-          <height>24</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="budget_button">
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+           </property>
+           <property name="text">
+            <string>Удалить</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../ORM_bookkeeper/res-icons.qrc">
+             <normaloff>:/icon/icons/delete.svg</normaloff>:/icon/icons/delete.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QPushButton" name="budget_button">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
 background-color: rgba(255,255, 255, 0);
 border: 1px solid rgba(0, 0, 0, 100);
 border-radius: 7px;
@@ -373,72 +390,35 @@ background-color: rgba(255, 255, 255, 40);
 QPushButton:pressed {
 background-color: rgba(255, 255, 255, 90);
 }</string>
-        </property>
-        <property name="text">
-         <string>Бюджет</string>
-        </property>
-        <property name="icon">
-         <iconset resource="res-icons.qrc">
-          <normaloff>:/icon/icons/change_budget.svg</normaloff>:/icon/icons/change_budget.svg</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>24</width>
-          <height>24</height>
-         </size>
-        </property>
+           </property>
+           <property name="text">
+            <string>Бюджет</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../ORM_bookkeeper/res-icons.qrc">
+             <normaloff>:/icon/icons/change_budget.svg</normaloff>:/icon/icons/change_budget.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
     </item>
     <item>
-     <widget class="QTableView" name="tableView">
-      <property name="styleSheet">
-       <string notr="true">QTableView{
-background-color: rgba(255, 255, 255, 30);
-border: 1px solid rgba(255, 255, 255, 40);
-border-bottom-right-radius: 7px;
-border-bottom-left-radius: 7px;
-}
-
-QTableView: section {
-background-color: rgba(53, 53, 53);
-color: white;
-border: none;
-height: 50px;
-font-size: 14pt;
-}
-
-QTableView: item {
-border-style: none;
-border-bottom: rgba(255, 255, 255, 50);
-}
-
-QTableView: item:selected {
-border: none;
-color: rgba(255, 255, 255);
-background-color: rgba(255, 255, 255, 50);
-}</string>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="showGrid">
-       <bool>false</bool>
-      </property>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>135</number>
-      </attribute>
-     </widget>
+     <widget class="QTableWidget" name="table_viewer"/>
     </item>
    </layout>
   </widget>
  </widget>
  <resources>
-  <include location="res-icons.qrc"/>
+  <include location="../ORM_bookkeeper/res-icons.qrc"/>
  </resources>
  <connections/>
 </ui>

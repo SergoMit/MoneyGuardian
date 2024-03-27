@@ -18,13 +18,13 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QDialog,
     QFrame, QLabel, QLineEdit, QPushButton,
     QSizePolicy, QVBoxLayout, QWidget)
-import res_new_window_rc
+from bookkeeper.view import res_new_window_rc
 
-class Ui_Dialog(object):
+class Ui_Dialog_new(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(432, 280)
+        Dialog.resize(424, 270)
         Dialog.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(20, 70, 140, 255), stop:0.427447 rgba(48, 140, 105, 255), stop:1 rgba(48, 138,  126, 255));\n"
 "font-family: BigCaslon;")
         self.verticalLayout_2 = QVBoxLayout(Dialog)
@@ -70,7 +70,7 @@ class Ui_Dialog(object):
         self.cb_category.addItem("")
         self.cb_category.addItem("")
         self.cb_category.setObjectName(u"cb_category")
-        self.cb_category.setAcceptDrops(True)
+        self.cb_category.setAcceptDrops(False)
         self.cb_category.setStyleSheet(u"\n"
 "QComboBox {\n"
 "font-size: 16pt;\n"
@@ -100,6 +100,7 @@ class Ui_Dialog(object):
 
         self.amount = QLineEdit(self.frame)
         self.amount.setObjectName(u"amount")
+        self.amount.setAcceptDrops(False)
         self.amount.setStyleSheet(u"font-size: 16pt;\n"
 "color: white;\n"
 "padding-left: 10px;\n"
@@ -112,6 +113,7 @@ class Ui_Dialog(object):
 
         self.descript = QLineEdit(self.frame)
         self.descript.setObjectName(u"descript")
+        self.descript.setAcceptDrops(False)
         self.descript.setStyleSheet(u"font-size: 16pt;\n"
 "color: white;\n"
 "padding-left: 10px;\n"
@@ -174,7 +176,16 @@ class Ui_Dialog(object):
         self.cb_category.setItemText(18, QCoreApplication.translate("Dialog", u"\u0411\u043b\u0430\u0433\u043e\u0442\u0432\u043e\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c", None))
 
         self.cb_category.setPlaceholderText(QCoreApplication.translate("Dialog", u"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044e", None))
+#if QT_CONFIG(tooltip)
+        self.data.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p>\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0444\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0443\u044e \u0434\u0430\u0442\u0443 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u0438\u044f \u0440\u0430\u0441\u0445\u043e\u0434\u0430</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.amount.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p>\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0441\u0443\u043c\u043c\u0443 \u0440\u0430\u0441\u0445\u043e\u0434\u0430</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.amount.setPlaceholderText(QCoreApplication.translate("Dialog", u"\u0421\u0443\u043c\u043c\u0430...", None))
+#if QT_CONFIG(tooltip)
+        self.descript.setToolTip(QCoreApplication.translate("Dialog", u"<html><head/><body><p>\u0423\u043a\u0430\u0436\u0438\u0442\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0440\u0430\u0441\u0445\u043e\u0434\u0430, \u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u043a\u043e\u043d\u043a\u0440\u0435\u0442\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440 \u0438\u043b\u0438 \u0443\u0441\u043b\u0443\u0433\u0443</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.descript.setPlaceholderText(QCoreApplication.translate("Dialog", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435...", None))
         self.save_button.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
     # retranslateUi
