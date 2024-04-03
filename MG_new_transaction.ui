@@ -10,6 +10,18 @@
     <height>270</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>424</width>
+    <height>270</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Создать</string>
   </property>
@@ -72,17 +84,12 @@ color: black;
         </property>
         <item>
          <property name="text">
-          <string>Продукты</string>
+          <string>Аксессуары</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Техника</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Транспорт</string>
+          <string>Благотворительность</string>
          </property>
         </item>
         <item>
@@ -92,22 +99,7 @@ color: black;
         </item>
         <item>
          <property name="text">
-          <string>Услуги</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Контент</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Стройматериалы</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Электроника</string>
+          <string>ЖКХ</string>
          </property>
         </item>
         <item>
@@ -117,27 +109,27 @@ color: black;
         </item>
         <item>
          <property name="text">
-          <string>Топливо</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Развлечения</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Отдых</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>ЖКХ</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
           <string>Кафе/рестораны</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Контент</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Красота и здоровье</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Медикаменты</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Налоги</string>
          </property>
         </item>
         <item>
@@ -147,12 +139,27 @@ color: black;
         </item>
         <item>
          <property name="text">
+          <string>Отдых</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Переводы</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Цифровые товары</string>
+          <string>Продукты</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Развлечения</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Разное</string>
          </property>
         </item>
         <item>
@@ -162,7 +169,37 @@ color: black;
         </item>
         <item>
          <property name="text">
-          <string>Благотворительность</string>
+          <string>Стройматериалы</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Техника</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Топливо</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Транспорт</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Услуги</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Цифровые товары</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Электроника</string>
          </property>
         </item>
        </widget>
@@ -260,7 +297,7 @@ background-color: rgba(255, 255, 255, 90);
          <string>Сохранить</string>
         </property>
         <property name="icon">
-         <iconset resource="res-new-window-rc.qrc">
+         <iconset resource="../../ORM_bookkeeper/res-new-window-rc.qrc">
           <normaloff>:/newPrefix/icons/add.svg</normaloff>:/newPrefix/icons/add.svg</iconset>
         </property>
         <property name="iconSize">
@@ -277,7 +314,7 @@ background-color: rgba(255, 255, 255, 90);
   </layout>
  </widget>
  <resources>
-  <include location="res-new-window-rc.qrc"/>
+  <include location="../../ORM_bookkeeper/res-new-window-rc.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MoneyGuardianUI_main.ui'
+## Form generated from reading UI file 'MoneyGuardianUI.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.2
 ##
@@ -17,15 +17,21 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
     QHeaderView, QLabel, QMainWindow, QPushButton,
-    QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
-from bookkeeper.view import res_icons
+    QSizePolicy, QTableView, QVBoxLayout, QWidget)
+from view import res_icons
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(793, 589)
+        MainWindow.resize(770, 600)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
+        MainWindow.setMaximumSize(QSize(16777215, 16777215))
+        MainWindow.setBaseSize(QSize(770, 600))
         MainWindow.setAcceptDrops(False)
         MainWindow.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(20, 70, 140, 255), stop:0.427447 rgba(48, 140, 105, 255), stop:1 rgba(48, 138,  126, 255));\n"
 "font-family: BigCaslon;")
@@ -217,27 +223,6 @@ class Ui_MainWindow(object):
         self.frame.setFrameShadow(QFrame.Raised)
         self.gridLayout = QGridLayout(self.frame)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.new_button = QPushButton(self.frame)
-        self.new_button.setObjectName(u"new_button")
-        self.new_button.setStyleSheet(u"QPushButton {\n"
-"background-color: rgba(255,255, 255, 0);\n"
-"border: 1px solid rgba(0, 0, 0, 100);\n"
-"border-radius: 7px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"background-color: rgba(255, 255, 255, 40);\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"background-color: rgba(255, 255, 255, 90);\n"
-"}")
-        icon = QIcon()
-        icon.addFile(u":/icon/icons/add.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.new_button.setIcon(icon)
-        self.new_button.setIconSize(QSize(24, 24))
-
-        self.gridLayout.addWidget(self.new_button, 0, 0, 1, 1)
-
         self.change_button = QPushButton(self.frame)
         self.change_button.setObjectName(u"change_button")
         self.change_button.setStyleSheet(u"QPushButton {\n"
@@ -252,12 +237,33 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "background-color: rgba(255, 255, 255, 90);\n"
 "}")
-        icon1 = QIcon()
-        icon1.addFile(u":/icon/icons/edit.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.change_button.setIcon(icon1)
+        icon = QIcon()
+        icon.addFile(u":/icon/icons/edit.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.change_button.setIcon(icon)
         self.change_button.setIconSize(QSize(24, 24))
 
         self.gridLayout.addWidget(self.change_button, 0, 1, 1, 1)
+
+        self.new_button = QPushButton(self.frame)
+        self.new_button.setObjectName(u"new_button")
+        self.new_button.setStyleSheet(u"QPushButton {\n"
+"background-color: rgba(255,255, 255, 0);\n"
+"border: 1px solid rgba(0, 0, 0, 100);\n"
+"border-radius: 7px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"background-color: rgba(255, 255, 255, 40);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"background-color: rgba(255, 255, 255, 90);\n"
+"}")
+        icon1 = QIcon()
+        icon1.addFile(u":/icon/icons/add.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.new_button.setIcon(icon1)
+        self.new_button.setIconSize(QSize(24, 24))
+
+        self.gridLayout.addWidget(self.new_button, 0, 0, 1, 1)
 
         self.del_button = QPushButton(self.frame)
         self.del_button.setObjectName(u"del_button")
@@ -301,16 +307,36 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.budget_button, 0, 3, 1, 1)
 
+        self.tableView = QTableView(self.frame)
+        self.tableView.setObjectName(u"tableView")
+        self.tableView.setMinimumSize(QSize(720, 0))
+        self.tableView.setStyleSheet(u"QTableView {\n"
+"background-color: rgba(255, 255, 255, 30);\n"
+"border: 1px solid rgba(255, 255, 255, 40);\n"
+"border-bottom-right-radius: 7px;\n"
+"border-bottom-left-radius: 7px;\n"
+"}\n"
+"\n"
+"QTableView::item {\n"
+"border: none;\n"
+"border-bottom: rgba(255, 255, 255, 50);\n"
+"}\n"
+"\n"
+"QTableView::item:selected {\n"
+"border: none;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgba(255, 255, 255, 50);\n"
+"}")
+        self.tableView.setShowGrid(True)
+        self.tableView.horizontalHeader().setDefaultSectionSize(120)
+
+        self.gridLayout.addWidget(self.tableView, 1, 0, 1, 4)
+
 
         self.horizontalLayout_5.addWidget(self.frame)
 
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_5)
-
-        self.table_viewer = QTableWidget(self.centralwidget)
-        self.table_viewer.setObjectName(u"table_viewer")
-
-        self.verticalLayout_8.addWidget(self.table_viewer)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -336,8 +362,8 @@ class Ui_MainWindow(object):
         self.day_residual.setText(QCoreApplication.translate("MainWindow", u"$0", None))
         self.week_residual.setText(QCoreApplication.translate("MainWindow", u"$0", None))
         self.month_residual.setText(QCoreApplication.translate("MainWindow", u"$0", None))
-        self.new_button.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c", None))
         self.change_button.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
+        self.new_button.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c", None))
         self.del_button.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         self.budget_button.setText(QCoreApplication.translate("MainWindow", u"\u0411\u044e\u0434\u0436\u0435\u0442", None))
     # retranslateUi
