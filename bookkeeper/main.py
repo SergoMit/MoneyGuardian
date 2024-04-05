@@ -1,14 +1,19 @@
+""" 
+В данном модуле реализовано отображение всех окон и виджетов программы.
+Для работы с Money Guardian нужно запускать именно данный файл
+"""
+
 import sys
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QDialog  # pylint: disable=E0611
 from PySide6 import QtCore
 
-from view.MoneyGuardianUI import Ui_MainWindow
-from view.MG_new_transactionUI import Ui_Dialog_new
-from view.MG_edit_transactionUI import Ui_Dialog_edit
-from view.MG_delete_transactionUI import Ui_Dialog_delete
-from view.MG_set_budgetUI import Ui_Dialog_budget
-from controller.crud_controller import CrudController
+from view.MoneyGuardianUI import Ui_MainWindow  # pylint: disable=E0401
+from view.MG_new_transactionUI import Ui_Dialog_new  # pylint: disable=E0401
+from view.MG_edit_transactionUI import Ui_Dialog_edit  # pylint: disable=E0401
+from view.MG_delete_transactionUI import Ui_Dialog_delete  # pylint: disable=E0401
+from view.MG_set_budgetUI import Ui_Dialog_budget  # pylint: disable=E0401
+from controller.crud_controller import CrudController  # pylint: disable=E0401
 
 
 class MoneyGuardian(QMainWindow):
@@ -16,11 +21,12 @@ class MoneyGuardian(QMainWindow):
     Класс MoneyGuardian формирует главное окно GUI-приложения Money Guardian
 
     Основное применение - данный класс обращается к автоматически сгенерированному образу интерфейса
-    Ui_MainWindow, внося в него весь необходимый функционал. Все остальные классы файла main.py связаны
-    непосредственно с MoneyGuardian.
+    Ui_MainWindow, внося в него весь необходимый функционал. Все остальные классы файла main.py 
+    связаны непосредственно с MoneyGuardian.
 
     Note:
-        Возможны проблемы с отображением шрифта BigCaslon, внедрённого в графический интерфейс, в Windows.
+        Возможны проблемы с отображением шрифта BigCaslon, внедрённого в графический интерфейс,
+        в Windows.
         В MacOS данный шрифт встроен в операционную систему по умолчанию.
 
     Methods
@@ -34,11 +40,12 @@ class MoneyGuardian(QMainWindow):
     open_set_budget_window()
         Функция, предоставляющая доступ к окну задания бюджета при нажатии кнопки "Бюджет"
     reload_data()
-        Функция, реализующая обновление данных во всех виджетах главного окна при загрузке приложения
-        и реализации транзакции/бюджета
+        Функция, реализующая обновление данных во всех виджетах главного окна при загрузке
+        приложения и реализации транзакции/бюджета
     view_data()
         Функция, реализующая перезагрузку виджета таблицы со всеми совершёнными транзакциями
     """
+
     def __init__(self) -> None:
         super(MoneyGuardian, self).__init__()
         self.ui = Ui_MainWindow()
@@ -54,39 +61,45 @@ class MoneyGuardian(QMainWindow):
         self.model = TableModel()
         self.ui.tableView.setModel(self.model)
 
-        self.ui.new_button.clicked.connect(lambda: self.open_new_transaction_window())
-        self.ui.del_button.clicked.connect(lambda: self.open_delete_transaction_window())
-        self.ui.change_button.clicked.connect(lambda: self.open_edit_transaction_window())
-        self.ui.budget_button.clicked.connect(lambda: self.open_set_budget_window())
+        self.ui.new_button.clicked.connect(lambda: self.open_new_transaction_window())  # pylint: disable=W0108
+        self.ui.del_button.clicked.connect(lambda: self.open_delete_transaction_window())  # pylint: disable=W0108
+        self.ui.change_button.clicked.connect(lambda: self.open_edit_transaction_window())  # pylint: disable=W0108
+        self.ui.budget_button.clicked.connect(lambda: self.open_set_budget_window())  # pylint: disable=W0108
 
         self.reload_data()
         self.view_data()
 
     def open_new_transaction_window(self) -> None:
+        """ Инициирует окно создания транзакции при нажатии кнопки 'Создать'"""
         self.new_transaction_window = NewTransactionWindow()
         self.new_transaction_window.exec()
         self.reload_data()
         self.view_data()
 
     def open_edit_transaction_window(self) -> None:
+        """ Инициирует окно редактирования транзакции при нажатии кнопки 'Изменить'"""
         self.edit_transaction_window = EditTransactionWindow()
         self.edit_transaction_window.exec()
         self.reload_data()
         self.view_data()
 
     def open_delete_transaction_window(self) -> None:
+        """ Инициирует окно удаления транзакции при нажатии кнопки 'Удалить'"""
         self.delete_transaction_window = DeleteTransactionWindow()
         self.delete_transaction_window.exec()
         self.reload_data()
         self.view_data()
 
     def open_set_budget_window(self) -> None:
+        """ Инициирует окно редактирования бюджета при нажатии кнопки 'Бюджет'"""
         self.set_budget_window = SetBudgetWindow()
         self.set_budget_window.exec()
         self.reload_data()
         self.view_data()
 
     def reload_data(self) -> None:
+        """ Реализует обновление данных во всех виджетах главного окна при загрузке приложения
+        и реализации транзакции/бюджета"""
         self.ui.day_expense.setText(self.controller.read('Expense_total')[0])
         self.ui.week_expense.setText(self.controller.read('Expense_total')[1])
         self.ui.month_expense.setText(self.controller.read('Expense_total')[2])
@@ -114,10 +127,11 @@ class MoneyGuardian(QMainWindow):
         self.ui.month_residual.setText(self.controller.read('Expense_residual')[2])
 
     def view_data(self):
+        """ Реализует перезагрузку виджета таблицы со всеми совершёнными транзакциями"""
         self.model.setitems(self.controller.read('Expense_data'))
 
 
-class NewTransactionWindow(QDialog):
+class NewTransactionWindow(QDialog):  # pylint: disable=R0903
     """
     Класс NewTransactionWindow формирует окно создания транзакции с использованием
     сгенерированного класса Ui_Dialog_new при нажатии кнопки "Создать" главного окна
@@ -141,19 +155,21 @@ class NewTransactionWindow(QDialog):
         self.ui_window_new.save_button.clicked.connect(lambda: self.add_new_transaction())
 
     def add_new_transaction(self) -> None:
+        """ Реализует создание новой транзакции"""
         balance = self.ui_window_new.amount.text()
         category = self.ui_window_new.cb_category.currentText()
         date = self.ui_window_new.data.text()
         description = self.ui_window_new.descript.text()
 
-        parameter = {'balance': balance, 'category': category, 'date': date, 'description': description}
+        parameter = {'balance': balance, 'category': category, 'date': date,
+                      'description': description}
 
         CrudController().create('Expense', parameter)
 
         self.close()
 
 
-class EditTransactionWindow(QDialog):
+class EditTransactionWindow(QDialog):  # pylint: disable=R0903
     """
     Класс EditTransactionWindow формирует окно изменения транзакции с использованием
     сгенерированного класса Ui_Dialog_edit при нажатии кнопки "Изменить" главного окна
@@ -164,7 +180,7 @@ class EditTransactionWindow(QDialog):
     Methods
     ----------
     edit_current_transaction()
-        Функция, реализующая логику изменения транзакции по указанному id транзакции.
+        Функция, реализующая логику изменения транзакции по указанному id.
         Формируется словарь из значений, внесённых пользователем, и передаётся в метод update
         класса CrudController
     """
@@ -177,20 +193,21 @@ class EditTransactionWindow(QDialog):
         self.ui_window_edit.edit_button.clicked.connect(lambda: self.edit_current_transaction())
 
     def edit_current_transaction(self) -> None:
+        """ Реализует логику изменения транзакции"""
         transaction_id = self.ui_window_edit.edit_id_transaction.text()
         balance = self.ui_window_edit.edit_amount.text()
         category = self.ui_window_edit.edit_cb_category.currentText()
         date = self.ui_window_edit.edit_date.text()
         description = self.ui_window_edit.edit_descript.text()
 
-        parameters = {'transaction_id': transaction_id, 'balance': balance, 'category': category, 'date': date,
-                      'description': description}
+        parameters = {'transaction_id': transaction_id, 'balance': balance, 'category': category,
+                      'date': date, 'description': description}
         CrudController().update(parameters)
 
         self.close()
 
 
-class DeleteTransactionWindow(QDialog):
+class DeleteTransactionWindow(QDialog):  # pylint: disable=R0903
     """
     Класс DeleteTransactionWindow формирует окно удаления транзакции с использованием
     сгенерированного класса Ui_Dialog_delete при нажатии кнопки "Удалить" главного окна
@@ -213,12 +230,13 @@ class DeleteTransactionWindow(QDialog):
         self.ui_window_delete.delete_button.clicked.connect(lambda: self.delete_current_transaction())
 
     def delete_current_transaction(self) -> None:
+        """ Реализует логику удаления транзакции"""
         transaction_id = self.ui_window_delete.delete_id.text()
         CrudController().delete(transaction_id)
         self.close()
 
 
-class SetBudgetWindow(QDialog):
+class SetBudgetWindow(QDialog):  # pylint: disable=R0903
     """
     Класс SetBudgetWindow формирует окно задания бюджета с использованием
     сгенерированного класса Ui_Dialog_budget при нажатии кнопки Бюджет главного окна
@@ -241,17 +259,19 @@ class SetBudgetWindow(QDialog):
         self.ui_budget_window.save_budget_button.clicked.connect(lambda: self.set_budget())
 
     def set_budget(self) -> None:
+        """ Реализует назначение бюджета на день, неделю, месяц"""
         budget_per_day = self.ui_budget_window.bud_per_day.text()
         budget_per_week = self.ui_budget_window.bud_per_week.text()
         budget_per_month = self.ui_budget_window.bud_per_month.text()
 
-        parameter = {'daily': budget_per_day, 'weekly': budget_per_week, 'monthly': budget_per_month}
+        parameter = {'daily': budget_per_day, 'weekly': budget_per_week,
+                      'monthly': budget_per_month}
         MoneyGuardian().controller.create('Budget', parameter)
 
         self.close()
 
 
-class TableModel(QtCore.QAbstractTableModel):
+class TableModel(QtCore.QAbstractTableModel):  # pylint: disable=R0903
     """
     Класс TableModel формирует табличный виджет со всеми совершёнными транзакциями с использованием
     сгенерированного объекта tableView
@@ -273,24 +293,28 @@ class TableModel(QtCore.QAbstractTableModel):
         строкам табличного виджета
     headerData()
         Функция, сопоставляющая имя столбца с его положением в виджете
-
     """
+
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.items = CrudController.read('Expense_data')
 
     def setitems(self, items: tuple[str, str, str]) -> None:
+        """ Цикл обновления данных табличного виджета"""
         self.beginResetModel()
         self.items = items
         self.endResetModel()
 
-    def rowCount(self, *args, **kwargs) -> int:
+    def rowCount(self, *args, **kwargs) -> int:  # pylint: disable=C0103 disable=W0613
+        """ Определение числа строк, заполняемых в табличном виджете"""
         return len(self.items)
 
-    def columnCount(self, *args, **kwargs) -> int:
+    def columnCount(self, *args, **kwargs) -> int:  # pylint: disable=C0103 disable=W0613
+        """ Определение числа столбцов, заполняемых в табличном виджете"""
         return 6
 
-    def data(self, index, role: QtCore.Qt.ItemDataRole = ...) -> str | None:
+    def data(self, index, role: QtCore.Qt.ItemDataRole = ...) -> str | None:  # pylint: disable=R0911
+        """ Распределение данных по столбцам и строкам"""
         if not index.isValid():
             return
 
@@ -299,19 +323,23 @@ class TableModel(QtCore.QAbstractTableModel):
             col = index.column()
             if col == 0:
                 return f'{expense_info.id}'
-            elif col == 1:
+            if col == 1:
                 return f'{expense_info.amount}'
-            elif col == 2:
+            if col == 2:
                 return f'{expense_info.expense_date}'
-            elif col == 3:
+            if col == 3:
                 return f'{expense_info.added_date}'
-            elif col == 4:
+            if col == 4:
                 return f'{expense_info.comment}'
-            elif col == 5:
+            if col == 5:
                 return f'{expense_info.category}'
 
-    def headerData(self, section: int, orientation: QtCore.Qt.Orientation, role: QtCore.Qt.ItemDataRole = ...) -> str:
-        """В соответствии со столбцами таблицы Expense: id, amount, expense_date, added_date, comment, category"""
+    def headerData(self, section: int, orientation: QtCore.Qt.Orientation,  # pylint: disable=C0103
+                   role: QtCore.Qt.ItemDataRole = ...) -> str:
+        """
+        В соответствии со столбцами таблицы Expense: id, amount, expense_date, 
+        added_date, comment, category
+        """
 
         if role == QtCore.Qt.ItemDataRole.DisplayRole:
             if orientation == QtCore.Qt.Orientation.Horizontal:

@@ -1,28 +1,34 @@
-from datetime import date
-from pony.orm import *
-from config import way
-import logging
-from msg import message_box
-
 """ В данном модуле определены сущности таблиц, которые сгенерируются при первом подключении к БД"""
 
-db = Database()
+import logging
+
+from datetime import date
+from pony.orm import *  # type: ignore  # pylint: disable=W0401 disable=W0622 disable=W0614
+from config import way  # type: ignore  # pylint: disable=E0401
+from msg import message_box  # type: ignore  # pylint: disable=E0401
 
 
-class Expense(db.Entity):
-    id = PrimaryKey(int, auto=True)
-    amount = Required(float)
-    expense_date = Required(date, default=date.today())
-    added_date = Required(date, default=date.today())
-    comment = Optional(str)
-    category = Required(str)
+db = Database()  # type: ignore
 
 
-class Budget(db.Entity):
-    id = PrimaryKey(int, auto=True)
-    monthly = Required(float, default=56000)
-    weekly = Required(float, default=14000)
-    daily = Required(float, default=2000)
+class Expense(db.Entity):  # type: ignore
+    """ Класс, отвечающий за формирование таблицы Expense в БД"""
+
+    id = PrimaryKey(int, auto=True)  # type: ignore
+    amount = Required(float)  # type: ignore
+    expense_date = Required(date, default=date.today())  # type: ignore
+    added_date = Required(date, default=date.today())  # type: ignore
+    comment = Optional(str)  # type: ignore
+    category = Required(str)  # type: ignore
+
+
+class Budget(db.Entity):  # type: ignore
+    """ Класс, отвечающий за формирование таблицы Budget в БД"""
+
+    id = PrimaryKey(int, auto=True)  # type: ignore
+    monthly = Required(float, default=56000)  # type: ignore
+    weekly = Required(float, default=14000)  # type: ignore
+    daily = Required(float, default=2000)  # type: ignore
 
 
 try:
@@ -36,4 +42,3 @@ except Exception as e:
     logging.info(e)
     message_box('Ошибка подключения к базе данных, обратитесь к файлу py_log.')
     raise SystemExit
-
