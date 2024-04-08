@@ -6,26 +6,25 @@
 import datetime as dt
 
 from pony.orm import *  # type: ignore  # pylint: disable=W0401 disable=W0622 disable=W0614
-from models.entities import Expense, Budget  # type: ignore  # pylint: disable=E0401
-from models.entities import db  # type: ignore  # pylint: disable=E0401
-from msg import message_box  # type: ignore  # pylint: disable=E0401
-from config import logging_config  # type: ignore  # pylint: disable=E0401
+from bookkeeper.models.entities import db  # type: ignore  # pylint: disable=E0401
+from bookkeeper.msg import message_box  # type: ignore  # pylint: disable=E0401
+from bookkeeper.config import logging_config  # type: ignore  # pylint: disable=E0401
 
 
 @db_session  # type: ignore
 def first_budget():
     """ Функция, задающая начальный бюджет в пустой базе данных"""
-    checking = select(b for b in db.Budget)[:]
+    checking = select(b for b in db.Budget)[:]  # pylint: disable=E1101
     if not checking:
-        Budget(id=0)
+        db.Budget(id=0)  # pylint: disable=E1101
 
 
 @db_session  # type: ignore
 def add_budget(monthly: float, weekly: float, daily: float) -> None:
     """ Функция, реализующая внесение данных о текущем бюджете"""
     try:
-        delete(b for b in db.Budget)  # type: ignore
-        Budget(monthly=monthly, weekly=weekly, daily=daily)
+        delete(b for b in db.Budget)  # type: ignore  # pylint: disable=E1101
+        db.Budget(monthly=monthly, weekly=weekly, daily=daily)  # pylint: disable=E1101
     except Exception as err:
         logging_config(err)
         message_box('Не удалось внести данные в таблицу Budget, обратитесь к файлу py_log.')
@@ -36,7 +35,7 @@ def get_budget() -> list[float]:
     """ Функция, реализующая извлечение актуальных данных о бюджете"""
     try:
         first_budget()
-        budgets = select(b for b in db.Budget).order_by(-1).first()  # type: ignore
+        budgets = select(b for b in db.Budget).order_by(-1).first()  # type: ignore  # pylint: disable=E1101
         return [budgets.daily, budgets.weekly, budgets.monthly]
     except Exception as err:
         logging_config(err)
@@ -47,7 +46,7 @@ def get_budget() -> list[float]:
 def add_expense(balance: float, category: str, date: dt.date, description: str | None) -> None:
     """ Функция, реализующая добавление записи о расходах в таблицу Expense """
     try:
-        Expense(amount=balance, expense_date=date, comment=description, category=category)
+        db.Expense(amount=balance, expense_date=date, comment=description, category=category)  # pylint: disable=E1101
     except Exception as err:
         logging_config(err)
         message_box('Не удалось внести данные в таблицу Expense, обратитесь к файлу py_log.')
@@ -57,7 +56,7 @@ def add_expense(balance: float, category: str, date: dt.date, description: str |
 def delete_expense(trans_id: int) -> None:
     """ Функция, реализующая удаление записи о расходе в таблице Expense"""
     try:
-        delete(e for e in db.Expense if e.id == trans_id)  # type: ignore
+        delete(e for e in db.Expense if e.id == trans_id)  # type: ignore  # pylint: disable=E1101
     except Exception as err:
         logging_config(err)
         message_box('Не удалось удалить данные из таблицы Expense, обратитесь к файлу py_log.')
@@ -68,7 +67,7 @@ def update_expense(trans_id: int, balance: float, category: str,
                     date: dt.date, description: str | None) -> None:
     """ Функция, реализующая обновление выбранной транзакции"""
     try:
-        expense = Expense[trans_id]
+        expense = db.Expense[trans_id]  # pylint: disable=E1101
         expense.set(amount=balance, expense_date=date, comment=description, category=category)
     except Exception as err:
         logging_config(err)
@@ -79,7 +78,8 @@ def update_expense(trans_id: int, balance: float, category: str,
 def get_day_total() -> float:
     """ Подсчёт затрат за день"""
     try:
-        day_total = select(e.amount for e in db.Expense).where(lambda e: e.expense_date == dt.date.today())[:]  # type: ignore
+        day_total = select(e.amount for e in db.Expense).where(  # pylint: disable=E1101
+            lambda e: e.expense_date == dt.date.today())[:]  # type: ignore
         return sum(day_total)
     except Exception as err:
         logging_config(err)
@@ -91,8 +91,9 @@ def get_week_total() -> float:
     """ Подсчёт затрат за неделю"""
     try:
         week_interval = dt.date.today() - dt.timedelta(days=7)
-        week_total = (select(e.amount for e in db.Expense).where  # type: ignore
-                      (lambda e: e.expense_date >= week_interval and e.expense_date <= dt.date.today()))[:]
+        week_total = (select(e.amount for e in db.Expense).where  # type: ignore  # pylint: disable=E1101
+                      (lambda e: e.expense_date >= week_interval
+                        and e.expense_date <= dt.date.today()))[:]
         return sum(week_total)
     except Exception as err:
         logging_config(err)
@@ -104,8 +105,9 @@ def get_month_total() -> float:
     """ Подсчёт затрат за месяц"""
     try:
         month_interval = dt.date.today() - dt.timedelta(days=28)
-        month_total = (select(e.amount for e in db.Expense).where  # type: ignore
-                       (lambda e: e.expense_date >= month_interval and e.expense_date <= dt.date.today()))[:]
+        month_total = (select(e.amount for e in db.Expense).where  # type: ignore  # pylint: disable=E1101
+                       (lambda e: e.expense_date >= month_interval
+                         and e.expense_date <= dt.date.today()))[:]
         return sum(month_total)
     except Exception as err:
         logging_config(err)
@@ -147,7 +149,7 @@ def get_month_residual() -> float:
 def get_expense_data():
     """ Сбор данных из таблицы Expense"""
     try:
-        expense_data = (select(e for e in db.Expense))[:]  # type: ignore
+        expense_data = (select(e for e in db.Expense))[:]  # type: ignore  # pylint: disable=E1101
         return expense_data
     except Exception as err:
         logging_config(err)

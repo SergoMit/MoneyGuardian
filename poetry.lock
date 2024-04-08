@@ -480,6 +480,23 @@ pytest = ">=4.6"
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtualenv"]
 
 [[package]]
+name = "pytest-mock"
+version = "3.14.0"
+description = "Thin-wrapper around the mock package for easier use with pytest"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pytest-mock-3.14.0.tar.gz", hash = "sha256:2719255a1efeceadbc056d6bf3df3d1c5015530fb40cf347c0f9afac88410bd0"},
+    {file = "pytest_mock-3.14.0-py3-none-any.whl", hash = "sha256:0b72c38033392a5f4621342fe11e9219ac11ec9d375f8e2a0c164539e0d70f6f"},
+]
+
+[package.dependencies]
+pytest = ">=6.2.5"
+
+[package.extras]
+dev = ["pre-commit", "pytest-asyncio", "tox"]
+
+[[package]]
 name = "shiboken6"
 version = "6.6.2"
 description = "Python/C++ bindings helper module"
@@ -607,4 +624,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "<3.12, >=3.8.1"
-content-hash = "c75ca1e8dab4e9d341d065f13471c49d544fcccc385a933aaaeea90e67615713"
+content-hash = "4a1edb00e7bbfcada87a3c5e423cfc16856b74f3e13ec86898c7bba0431e7b20"

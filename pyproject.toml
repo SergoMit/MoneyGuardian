@@ -12,6 +12,7 @@ python = "<3.12, >=3.8.1"
 pytest-cov = "^4.0.0"
 pony = "^0.7.17"
 pyside6 = "^6.4.2"
+pytest-mock = "^3.14.0"
 
 
 [tool.poetry.group.dev.dependencies]

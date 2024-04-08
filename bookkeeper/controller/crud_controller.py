@@ -5,28 +5,28 @@ delete в зависимости от запроса пользователя
 """
 
 from typing import Any
-from msg import message_box  # type: ignore  # pylint: disable=E0401
-from config import logging_config  # type: ignore  # pylint: disable=E0401
+from bookkeeper.msg import message_box  # type: ignore  # pylint: disable=E0401
+from bookkeeper.config import logging_config  # type: ignore  # pylint: disable=E0401
 
-import controller.query_helper as qh  # type: ignore  # pylint: disable=E0401
+import bookkeeper.controller.query_helper as qh  # type: ignore  # pylint: disable=E0401
 
 
 class CrudController:
     """
-    Класс CrudController осуществляет основные операции с данными: создание, чтение, обновление,
-    удаление, а также подсчёт затрат и нахождение остатка
+    Класс CrudController осуществляет основные операции с данными: создание,
+    чтение, обновление, удаление, а также подсчёт затрат и нахождение остатка
 
-    Основное применение - данный класс обеспечивают всю логику обработки запросов, исходящих из 
-    файла main.py
+    Основное применение - данный класс обеспечивают всю логику обработки
+    запросов, исходящих из файла main.py
 
     Methods
     ----------
     create(entity, params)
         Осуществляет запись в таблицы Budget и Expense базы данных
     read(params)
-        Осуществляет чтение из БД, передаёт результаты расходов за день, месяц, неделю и 
-        соотвествующий свободный остаток, а также сообщает сведения о всех текущих транзакциях
-        главному окну приложения
+        Осуществляет чтение из БД, передаёт результаты расходов за день, месяц, неделю и
+        месяц, неделю и соотвествующий свободный остаток, а также сообщает сведения о всех
+        текущих транзакциях главному окну приложения
     update(params)
         Осуществляет изменение уже существующей записи в таблице Expense
     delete(params)
@@ -43,7 +43,8 @@ class CrudController:
                 return
         except Exception as err:
             logging_config(err)
-            message_box('Возникла ошибка при создании бюджета, обратитесь к файлу py_log.')
+            message_box('Возникла ошибка при создании бюджета,\
+                         обратитесь к файлу py_log.')
             raise SystemExit
 
         try:
@@ -53,20 +54,21 @@ class CrudController:
                 return
         except Exception as err:
             logging_config(err)
-            message_box('Возникла ошибка при создании расхода, обратитесь к файлу py_log.')
+            message_box('Возникла ошибка при создании расхода,\
+                         обратитесь к файлу py_log.')
             raise SystemExit
 
     @staticmethod
     def read(params: str) -> tuple[str, str, str]:
         """
-        Осуществляет чтение из БД, передаёт результаты расходов за день, месяц, неделю и 
-        соотвествующий свободный остаток, а также сообщает сведения о всех текущих 
+        Осуществляет чтение из БД, передаёт результаты расходов за день, месяц, неделю и
+        соотвествующий свободный остаток, а также сообщает сведения о всех текущих
         транзакциях главному окну приложения
         """
         if params == 'Budget':
             try:
                 budgets = (str(qh.get_budget()[0]), str(qh.get_budget()[1]),
-                            str(qh.get_budget()[2]))
+                           str(qh.get_budget()[2]))
                 return budgets
             except Exception as err:
                 logging_config(err)
@@ -77,7 +79,7 @@ class CrudController:
         if params == 'Expense_total':
             try:
                 totals = (str(qh.get_day_total()), str(qh.get_week_total()),
-                           str(qh.get_month_total()))
+                          str(qh.get_month_total()))
                 return totals
             except Exception as err:
                 logging_config(err)
@@ -88,7 +90,7 @@ class CrudController:
         if params == 'Expense_residual':
             try:
                 residuals = (str(qh.get_day_residual()), str(qh.get_week_residual()),
-                              str(qh.get_month_residual()))
+                             str(qh.get_month_residual()))
                 return residuals
             except Exception as err:
                 logging_config(err)
@@ -109,7 +111,8 @@ class CrudController:
     def update(params: dict[str, Any]) -> None:
         """ Осуществляет изменение уже существующей записи в таблице Expense"""
         try:
-            qh.update_expense(trans_id=params['transaction_id'], balance=params['balance'],
+            qh.update_expense(trans_id=params['transaction_id'],
+                              balance=params['balance'],
                               category=params['category'], date=params['date'],
                               description=params['description'])
         except Exception as err:
