@@ -1,6 +1,6 @@
 import unittest
 from pony.orm import db_session, flush
-from bookkeeper.models.entities import db, Expense, Budget
+from bookkeeper.models.entities import Expense, Budget
 
 
 class TestDatabaseEntities(unittest.TestCase):
@@ -22,6 +22,7 @@ class TestDatabaseEntities(unittest.TestCase):
         self.assertEqual(budget.monthly, budget.monthly)
         self.assertEqual(budget.weekly, budget.weekly)
         self.assertEqual(budget.daily, budget.daily)
+
 
 if __name__ == '__main__':
     unittest.main()

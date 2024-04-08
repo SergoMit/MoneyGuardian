@@ -59,7 +59,7 @@ class CrudController:
             raise SystemExit
 
     @staticmethod
-    def read(params: str) -> tuple[str, str, str]:
+    def read(params: str) -> tuple[str, str, str] | list[Any]:
         """
         Осуществляет чтение из БД, передаёт результаты расходов за день, месяц, неделю и
         соотвествующий свободный остаток, а также сообщает сведения о всех текущих

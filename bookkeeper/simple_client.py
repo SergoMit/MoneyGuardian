@@ -2,44 +2,44 @@
 Простой тестовый скрипт для терминала
 """
 
-from bookkeeper.models.category import Category
-from bookkeeper.models.expense import Expense
-from bookkeeper.repository.memory_repository import MemoryRepository
-from bookkeeper.utils import read_tree
+import bookkeeper.controller.query_helper as qh
 
-cat_repo = MemoryRepository[Category]()
-exp_repo = MemoryRepository[Expense]()
-
-cats = '''
-продукты
-    мясо
-        сырое мясо
-        мясные продукты
-    сладости
-книги
-одежда
-'''.splitlines()
-
-Category.create_from_tree(read_tree(cats), cat_repo)
-
+lines = '------------------------------------------------------------'
+space = '                                                            '
 while True:
     try:
-        cmd = input('$> ')
+        print(f'Введите буквами одно из следующих слов для\n\
+              \rвывода соответствующей информации на экран:\n\
+            \r"расходы" "бюджет" "остаток" "транзакции" "выход"\n\
+            \r{lines}\n\r{space}',sep=' ')
+        cmd = input('$> ').strip(' ')
     except EOFError:
         break
     if not cmd:
         continue
-    if cmd == 'категории':
-        print(*cat_repo.get_all(), sep='\n')
-    elif cmd == 'расходы':
-        print(*exp_repo.get_all(), sep='\n')
-    elif cmd[0].isdecimal():
-        amount, name = cmd.split(maxsplit=1)
+    if cmd == 'расходы':
         try:
-            cat = cat_repo.get_all({'name': name})[0]
-        except IndexError:
-            print(f'категория {name} не найдена')
-            continue
-        exp = Expense(int(amount), cat.pk)
-        exp_repo.add(exp)
-        print(exp)
+            print(f'День: {qh.get_day_total()}\nНеделя:{qh.get_week_total()}\n\
+                  \rМесяц: {qh.get_month_total()}\n\r{lines}\n\r{space}', sep= ' ')
+        except Exception:
+            break
+    elif cmd == 'бюджет':
+        try:
+            print(f'День: {qh.get_budget()[0]}\nНеделя:{qh.get_budget()[1]}\n\
+                  \rМесяц: {qh.get_budget()[1]}\n\r{lines}\n\r{space}', sep= ' ')
+        except Exception:
+            break
+    elif cmd == 'остаток':
+        try:
+            print(f'День: {qh.get_day_residual()}\nНеделя:{qh.get_week_residual()}\n\
+                  \rМесяц: {qh.get_month_residual()}\n\r{lines}\n\r{space}', sep= ' ')
+        except Exception:
+            break
+    elif cmd == 'транзакции':
+        try:
+            qh.get_expense_data().show()
+            print(f'{lines}\n\r{space}')
+        except Exception:
+            break
+    elif cmd == 'выход':
+        raise SystemExit
